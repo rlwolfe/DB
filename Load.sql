@@ -8,49 +8,56 @@
 --
 -- Load Table : 'Employee' 
 --
-COPY Employee
-    FROM Employee.txt
+COPY "Employee"
+    FROM "Employee.txt"
         WITH DELIMITER AS ',';
 
 --
 -- Load Table : 'Shift' 
 --
-COPY Shift
-    FROM Shift.txt
+COPY "Shift"
+    FROM "Shift.txt"
         WITH DELIMITER AS ',';
 
 --
 -- Load Table : 'Librarian' 
 --
-COPY Librarian
-    FROM Librarian.txt
+COPY "Librarian"
+    FROM "Librarian.txt"
         WITH DELIMITER AS ',';
 
 --
 -- Load Table : 'Preserver' 
 --
-COPY Preserver
-    FROM Preserver.txt
+COPY "Preserver"
+    FROM "Preserver.txt"
         WITH DELIMITER AS ',';
 
 --
 -- Load Table : 'Secratary' 
 --
-COPY Secratary
-    FROM Secratary.txt
+COPY "Secratary"
+    FROM "Secratary.txt"
         WITH DELIMITER AS ',';
 
 --
 -- Load Table : 'Manager' 
 --
-COPY Manager
-    FROM Manager.txt
+COPY "Manager"
+    FROM "Manager.txt"
         WITH DELIMITER AS ',';
 
 --
 -- Load Table : 'Security' 
 --
-COPY Security
-    FROM Security.txt
+COPY "Security"
+    FROM "Security.txt"
+        WITH DELIMITER AS ',';
+
+--
+-- Load Table : 'Works' 
+--
+COPY "Works"
+    FROM "Works.txt"
         WITH DELIMITER AS ',';
 
