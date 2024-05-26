@@ -7,6 +7,7 @@ ERD:
 ![image](https://github.com/rlwolfe/DB/assets/67902191/054bebb4-78ee-48ef-9dc2-9c262b73f343)
 
 DSD:
-![image](https://github.com/rlwolfe/DB/assets/67902191/4afc6882-43ce-4e77-8ad6-73c35af10cc3)
+![image](https://github.com/rlwolfe/DB/assets/67902191/ecf20615-1169-4028-bf54-c2be7308fd13)
+
 
 We used Mockaroo to generate data, and we filled in the table with 1000 employees of different types because that was the max amount allowed to produce on Mockaroo
