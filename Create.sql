@@ -10,37 +10,42 @@
 -- name            :  
 -- start_date      :  
 -- birthdate       :  
--- department      : dept/team 
+-- department      : dept
 --
-CREATE SEQUENCE seq_Employee_EmpID
+CREATE SEQUENCE if NOT EXISTS seq_Employee_EmpID
     INCREMENT 1
     START 1;
 
-CREATE TABLE Employee (
+CREATE TYPE dept AS ENUM ('Library', 'Desk', 'Archives', 'Management', 'Security');
+
+CREATE TYPE team AS ENUM ('Library', 'Desk', 'Archives', 'Security');
+
+CREATE TYPE days AS ENUM ('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+
+CREATE TYPE genre AS ENUM ('children', 'mystery', 'fantasy', 'romance', 'science fiction', 'thriller', 'historical fiction', 'biography', 'self-help', 'cookbook');
+
+CREATE TYPE specialty AS ENUM ('children', 'mystery', 'fantasy', 'romance', 'science fiction', 'thriller', 'historical fiction', 'biography');
+
+CREATE TYPE post AS ENUM ('Front door', 'Back door', 'Side door', 'Main floor', 'Archives');
+
+CREATE TABLE if NOT EXISTS "Employee" (
     EmpID          INTEGER DEFAULT NEXTVAL('seq_Employee_EmpID') NOT NULL,
     name           VARCHAR NOT NULL,
     start_date     DATE NOT NULL,
     birthdate      DATE NOT NULL,
-    department     DEPT/TEAM('Library', 'Desk', 'Archives', 'Management', 'Security') NOT NULL,
+    department     dept NOT NULL,
 CONSTRAINT pk_Employee PRIMARY KEY (EmpID));
 
 
 --
 -- Create Table    : 'Shift'   
--- EmpID           :  (references Employee.EmpID)
--- day_of_week     : days of week 
+-- day_of_week     : 
 -- timeslot        :  
 --
-CREATE TABLE Shift (
-    EmpID          INTEGER NOT NULL,
-    day_of_week    DAYS('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') NOT NULL,
+CREATE TABLE if NOT EXISTS "Shift" (
+    day_of_week    days NOT NULL,
     timeslot       INTERVAL NOT NULL,
-CONSTRAINT pk_Shift PRIMARY KEY (EmpID),
-CONSTRAINT fk_Shift FOREIGN KEY (EmpID)
-    REFERENCES Employee (EmpID)
-    MATCH FULL
-    ON DELETE CASCADE
-    ON UPDATE CASCADE);
+CONSTRAINT pk_Shift PRIMARY KEY (day_of_week,timeslot));
 
 
 --
@@ -48,12 +53,12 @@ CONSTRAINT fk_Shift FOREIGN KEY (EmpID)
 -- EmpID           :  (references Employee.EmpID)
 -- specialty       : genres 
 --
-CREATE TABLE Librarian (
+CREATE TABLE if NOT EXISTS "Librarian" (
     EmpID          INTEGER NOT NULL,
-    specialty      GENRE('children', 'mystery', 'fantasy', 'romance', 'science fiction', 'thriller', 'historical fiction', 'biography', 'self-help', 'cookbook') NOT NULL,
+    specialty      genre NOT NULL,
 CONSTRAINT pk_Librarian PRIMARY KEY (EmpID),
 CONSTRAINT fk_Librarian FOREIGN KEY (EmpID)
-    REFERENCES Employee (EmpID)
+    REFERENCES "Employee" (EmpID)
     MATCH FULL
     ON DELETE NO ACTION
     ON UPDATE CASCADE);
@@ -64,12 +69,12 @@ CONSTRAINT fk_Librarian FOREIGN KEY (EmpID)
 -- EmpID           :  (references Employee.EmpID)
 -- specialty       : genres 
 --
-CREATE TABLE Preserver (
+CREATE TABLE if NOT EXISTS "Preserver" (
     EmpID          INTEGER NOT NULL,
-    specialty      GENRE('children', 'mystery', 'fantasy', 'romance', 'science fiction', 'thriller', 'historical fiction', 'biography') NOT NULL,
+    specialty      specialty NOT NULL,
 CONSTRAINT pk_Preserver PRIMARY KEY (EmpID),
 CONSTRAINT fk_Preserver FOREIGN KEY (EmpID)
-    REFERENCES Employee (EmpID)
+    REFERENCES "Employee" (EmpID)
     MATCH FULL
     ON DELETE NO ACTION
     ON UPDATE CASCADE);
@@ -79,11 +84,11 @@ CONSTRAINT fk_Preserver FOREIGN KEY (EmpID)
 -- Create Table    : 'Secratary'   
 -- EmpID           :  (references Employee.EmpID)
 --
-CREATE TABLE Secratary (
+CREATE TABLE if NOT EXISTS "Secratary" (
     EmpID          INTEGER NOT NULL,
 CONSTRAINT pk_Secratary PRIMARY KEY (EmpID),
 CONSTRAINT fk_Secratary FOREIGN KEY (EmpID)
-    REFERENCES Employee (EmpID)
+    REFERENCES "Employee" (EmpID)
     MATCH FULL
     ON DELETE NO ACTION
     ON UPDATE CASCADE);
@@ -94,12 +99,12 @@ CONSTRAINT fk_Secratary FOREIGN KEY (EmpID)
 -- EmpID           :  (references Employee.EmpID)
 -- team            : dept/team 
 --
-CREATE TABLE Manager (
+CREATE TABLE if NOT EXISTS "Manager" (
     EmpID          INTEGER NOT NULL,
-    team           DEPT/TEAM('Library', 'Desk', 'Archives', 'Security') NOT NULL,
+    team           team NOT NULL,
 CONSTRAINT pk_Manager PRIMARY KEY (EmpID),
 CONSTRAINT fk_Manager FOREIGN KEY (EmpID)
-    REFERENCES Employee (EmpID)
+    REFERENCES "Employee" (EmpID)
     MATCH FULL
     ON DELETE NO ACTION
     ON UPDATE CASCADE);
@@ -110,25 +115,47 @@ CONSTRAINT fk_Manager FOREIGN KEY (EmpID)
 -- EmpID           :  (references Employee.EmpID)
 -- location        : guard posts 
 --
-CREATE TABLE Security (
+CREATE TABLE if NOT EXISTS "Security" (
     EmpID          INTEGER NOT NULL,
-    location       POSTS('Front door', 'Back door', 'Side door', 'Main floor', 'Archives') NOT NULL,
+    location       post NOT NULL,
 CONSTRAINT pk_Security PRIMARY KEY (EmpID),
 CONSTRAINT fk_Security FOREIGN KEY (EmpID)
-    REFERENCES Employee (EmpID)
+    REFERENCES "Employee" (EmpID)
     MATCH FULL
     ON DELETE NO ACTION
     ON UPDATE CASCADE);
 
 
 --
+-- Create Table    : 'Works'   
+-- EmpID           :  (references Employee.EmpID)
+-- day_of_week     :  (references Shift.day_of_week)
+-- timeslot        :  (references Shift.timeslot)
+--
+CREATE TABLE Works (
+    EmpID          INTEGER NOT NULL,
+    day_of_week    days NOT NULL,
+    timeslot       INTERVAL NOT NULL,
+CONSTRAINT pk_Works PRIMARY KEY (EmpID,day_of_week,timeslot),
+CONSTRAINT fk_Works FOREIGN KEY (EmpID)
+    REFERENCES "Employee" (EmpID)
+    MATCH FULL
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE,
+CONSTRAINT fk_Works2 FOREIGN KEY (day_of_week,timeslot)
+    REFERENCES "Shift" (day_of_week,timeslot)
+    MATCH FULL
+    ON DELETE CASCADE
+    ON UPDATE CASCADE);
+
+--
 -- Permissions for: 'public'
 --
-GRANT ALL ON Employee TO GROUP public;
-GRANT ALL ON Shift TO GROUP public;
-GRANT ALL ON Librarian TO GROUP public;
-GRANT ALL ON Preserver TO GROUP public;
-GRANT ALL ON Secratary TO GROUP public;
-GRANT ALL ON Manager TO GROUP public;
-GRANT ALL ON Security TO GROUP public;
+GRANT ALL ON "Employee" TO GROUP public;
+GRANT ALL ON "Shift" TO GROUP public;
+GRANT ALL ON "Librarian" TO GROUP public;
+GRANT ALL ON "Preserver" TO GROUP public;
+GRANT ALL ON "Secratary" TO GROUP public;
+GRANT ALL ON "Manager" TO GROUP public;
+GRANT ALL ON "Security" TO GROUP public;
 
