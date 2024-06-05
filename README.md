@@ -10,4 +10,6 @@ DSD:
 ![image](https://github.com/rlwolfe/DB/assets/67902191/ecf20615-1169-4028-bf54-c2be7308fd13)
 
 
-We used Mockaroo to generate data, and we filled in the table with 1000 employees of different types because that was the max amount allowed to produce on Mockaroo
+We used python to generate data, and we filled in the table with 200,000 employees of different types because and then split them into departments and gave them the relevant entity attributes
+
+The pg_dump log file is called backupSQL.log
