@@ -41,10 +41,17 @@ Query returned successfully in X msec. (166, 64, 51, 49)
 
 No error messages were received
 
-**** Vislualizations ****
+**** Visualizations ****
 
 Bar Graph showing all the employees working each day of the week (there are roughly 7,000 per day):
 ![bar_graph_visualiser-shifts_per_day](https://github.com/user-attachments/assets/a3d334d5-6d1b-459c-b31c-4f5b4b53a0e7)
 
 Pie Chart showing all employees by department (there are roughly 40,000 in each department):
 ![pie_chart_visualiser-emp_by_dept](https://github.com/user-attachments/assets/9ab16278-52d1-4d21-9f66-8bb5248a8ca0)
+
+**** Functions ****
+Created and saved in the Functions.sql
+
+output from running the functions:
+CREATE FUNCTION
+Query returned successfully in 577 msec. (others were also around 500 msec)
