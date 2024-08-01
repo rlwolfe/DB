@@ -31,7 +31,7 @@ These constraints created the simple error of telling us that there were rows th
 
 ----------- Stage 3 -----------
 
-Additional queries with 2/3 table joins were added to the file [joins.sql] (https://github.com/rlwolfe/DB/blob/c4708da078fe141f66b46f708df00c52f8174095/Joins.sql) with their timings below each query
+Additional queries with 2/3 table joins were added to the file [Joins.sql](https://github.com/rlwolfe/DB/blob/c4708da078fe141f66b46f708df00c52f8174095/Joins.sql) with their timings below each query
 
 Once the views were created and the queries added they all returned the following:
 INSERT 0 1
@@ -44,10 +44,10 @@ No error messages were received
 **** Visualizations ****
 
 Bar Graph showing all the employees working each day of the week (there are roughly 7,000 per day):
-![bar_graph_visualiser-shifts_per_day](https://github.com/user-attachments/assets/a3d334d5-6d1b-459c-b31c-4f5b4b53a0e7)
+[bar_graph_visualiser-shifts_per_day](https://github.com/user-attachments/assets/a3d334d5-6d1b-459c-b31c-4f5b4b53a0e7)
 
 Pie Chart showing all employees by department (there are roughly 40,000 in each department):
-![pie_chart_visualiser-emp_by_dept](https://github.com/user-attachments/assets/9ab16278-52d1-4d21-9f66-8bb5248a8ca0)
+[pie_chart_visualiser-emp_by_dept](https://github.com/user-attachments/assets/9ab16278-52d1-4d21-9f66-8bb5248a8ca0)
 
 **** Functions ****
 Created and saved in the Functions.sql
