@@ -31,7 +31,7 @@ These constraints created the simple error of telling us that there were rows th
 
 ----------- Stage 3 -----------
 
-Additional queries with 2/3 table joins were added to the file joins.sql with their timings below each query
+Additional queries with 2/3 table joins were added to the file joins.sql Joins.sql with their timings below each query
 
 Once the views were created and the queries added they all returned the following:
 INSERT 0 1
