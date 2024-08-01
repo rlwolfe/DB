@@ -157,4 +157,25 @@ for i in range(50000):
         
 with open(r"C:\Users\Rachel\Documents\COLLEGE!\tal_23-24\Sem 2\DB\proj\Works.sql", "w") as file:
     file.write(shift)
-    
+
+
+# creates wages
+wages = ""
+for jobID in range(5):
+    i = random.randint(100, 999)
+    wages += f"INSERT INTO \"Wages\" (ID, wage, JOB_ID)\n\
+         VALUES ({jobID}, {i}, {jobID});\n\n"
+
+with open(r"C:\Users\Rachel\Documents\COLLEGE!\tal_23-24\Sem_2\DB\proj\Wages.sql", "w") as file:
+     file.write(wages)
+
+# assigns wages to create payment
+payment = ""
+i = 0
+for emp in range(200000):
+    payment  += f"INSERT INTO \"Payment\" (cashflowID, empid, ID, paydate, status)\n\
+         VALUES ({i}, {emp}, {random.randint(0, 4)}, '{fake.date_time_this_year().date()}', '{random.randint(0, 1)}' );\n\n"
+    i += 1
+
+with open(r"C:\Users\Rachel\Documents\COLLEGE!\tal_23-24\Sem_2\DB\proj\Payment.sql", "w") as file:
+     file.write(payment)
