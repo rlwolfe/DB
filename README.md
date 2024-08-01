@@ -14,7 +14,7 @@ We used python to generate data, and we filled in the table with 200,000 employe
 
 ----------- Stage 2 -----------
 
-The pg_dump log file is called backupSQL.log
+The pg_dump log file is called [backupSQL.log](https://github.com/rlwolfe/DB/blob/c4708da078fe141f66b46f708df00c52f8174095/backupSQL.log)
 
 Queries created and time tracked for them is in the file Queries.sql (and the extra 4 in Constraints.sql)
 
@@ -31,7 +31,7 @@ These constraints created the simple error of telling us that there were rows th
 
 ----------- Stage 3 -----------
 
-Additional queries with 2/3 table joins were added to the file joins.sql with their timings below each query
+Additional queries with 2/3 table joins were added to the file [joins.sql] (https://github.com/rlwolfe/DB/blob/c4708da078fe141f66b46f708df00c52f8174095/Joins.sql) with their timings below each query
 
 Once the views were created and the queries added they all returned the following:
 INSERT 0 1
