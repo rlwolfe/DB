@@ -120588,4 +120588,3 @@ VALUES (199992, 'Front door');
 
 INSERT INTO "Security" (empid, location)
 VALUES (199999, 'Back door');
-
