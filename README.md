@@ -68,7 +68,23 @@ One view is for managers and displays all the employees and their salaries and w
 
 ## **** Queries ****
 
+#### EmployeeWages -
+Select (employees paid less than 500) output:
+Successfully run. Total query runtime: 535 msec.
+80089 rows affected.
 
+Insert (new employee payment) output:
+INSERT 0 1
+Query returned successfully in 90 msec.
+
+#### PaymentStatus-
+Select (employees not yet paid) output:
+Successfully run. Total query runtime: 194 msec.
+99902 rows affected.
+
+Update (archives employees' payment status to paid) output:
+UPDATE 39740
+Query returned successfully in 342 msec.
 
 ### ERD that was integrated into ours
 ![image](https://github.com/user-attachments/assets/a14fdb3a-cfb5-4f52-b843-84227bfdefcc)
