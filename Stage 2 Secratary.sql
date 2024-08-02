@@ -120195,4 +120195,3 @@ VALUES (199996);
 
 INSERT INTO "Secratary" (empid)
 VALUES (199998);
-
